@@ -8,7 +8,6 @@ The application tries to find faces in the webcam image and match them against i
 *   Scipy
 *   Tensorflow
 *   Flask
-*
 
 ## Inspiration
 Models, training code and inspriation can be found in the [facenet](https://github.com/davidsandberg/facenet) repository.
