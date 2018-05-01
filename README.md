@@ -7,6 +7,8 @@ The application tries to find faces in the webcam image and match them against i
 *   OpenCv
 *   Scipy
 *   Tensorflow
+*   Flask
+*
 
 ## Inspiration
 Models, training code and inspriation can be found in the [facenet](https://github.com/davidsandberg/facenet) repository.
@@ -17,22 +19,16 @@ A direct link to the pretrained Inception Resnet model can be found [here](https
 Get the [model from facenet](https://drive.google.com/file/d/0B5MzpY9kBtDVZ2RpVDYwWmxoSUk) and setup your id folder.
 The id folder should contain subfolders, each containing at least one image of one person. The subfolders should be named after the person in the folder since this name is used as output when a match is found.
 
-E.g. id folder named `ids` containing subfolders `Adam` and `Eve`, each containing images of the respective person.
+E.g. id folder named `ids` containing subfolders `Beyonce` and `Will Smith`, each containing images of the respective person.
 
 ```bash
 ├── ids
-│   ├── Adam
-│   │   ├── Adam0.png
-│   │   ├── Adam1.png
-│   ├── Eve
-│   │   ├── Eve0.png
+│   ├── Beyonce
+│   │   ├── beyonce_1.jpg
+│   │   ├── beyonce_2.jpg
+│   ├── Will Smith
+│   │   ├── will_smith_1.jpg
+        ├── will_smith_2.jpg
+
 ```
-Download the [model](https://drive.google.com/file/d/0B5MzpY9kBtDVZ2RpVDYwWmxoSUk) to a folder named `model` and run `python3 main.py ./model/ ./ids/` to start the program.
-
-Visualization hotkeys:
-*   l - toggle facial landmarks
-*   b - toggle bounding box
-*   i - toggle id
-*   f - toggle frames per second
-
-![alt text](https://github.com/habrman/FaceRecognition/blob/master/example.png)
+Download the [model](https://drive.google.com/file/d/0B5MzpY9kBtDVZ2RpVDYwWmxoSUk) to a folder named `model` and run `python __server__.py` to start the program running on port 5030.
