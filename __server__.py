@@ -2,6 +2,7 @@ from main import *
 from flask import Flask, request
 from random import randint
 import requests, json
+import cv2
 
 app = Flask(__name__)
 app.secret_key = str(randint(1000, 10000))
@@ -9,21 +10,23 @@ app.secret_key = str(randint(1000, 10000))
 
 
 # set the api to perform face recognition of certain celebs
-@app.route('/api/face_recognition', methods=['GET', 'POST'])
+@app.route('/api/face_recognition', methods=['POST'])
 def face_recognition():
 
-    if request.method == 'POST':
-        content = request.get_json(force=True, silent=True)
-        # this variable will contain an image file
-        image = content['image_data']
-        # pass the image to the face recognition method
-        result = main(image)
-        #
-        message  = {
-            "data" : result
-        }
+    r = request
+    # convert string of image data to uint8
+    nparr = np.fromstring(r.data, np.uint8)
+    # decode image
+    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
-        return json.dumps(message)
+    # pass the image to the face recognition method
+    result = main(img, ready=True)
+
+    message  = {
+        "data" : result
+    }
+
+    return json.dumps(message)
 
 
 if __name__=="__main__":

@@ -127,7 +127,7 @@ def test_run(pnet, rnet, onet, sess, images_placeholder, phase_train_placeholder
             print('Couldn\'t fint match for %s' % (aligned_image_paths[i]))
 
 
-def main(image_path):
+def main(image_path, ready=False):
     id_folder = ['ids']
     test_folder = None
     model = './model/'
@@ -152,7 +152,10 @@ def main(image_path):
             show_id = True
             show_fps = False
 
-            frame = cv2.imread(image_path)
+            if ready is False:
+                frame = cv2.imread(image_path)
+            elif ready is True:
+                frame = image_path
 
             face_patches, padded_bounding_boxes, landmarks = detect_and_align.align_image(frame, pnet, rnet, onet)
 
@@ -173,7 +176,7 @@ def main(image_path):
                         print('Unkown! Couldn\'t fint match.')
                     return matching_id
             else:
-                matching_id = 'No face was found in the picture'
+                matching_id = 'Face Unfound'
                 print(matching_id)
                 return matching_id
 
