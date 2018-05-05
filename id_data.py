@@ -28,7 +28,7 @@ def get_id_data(id_folder, pnet, rnet, onet, sess, embeddings, images_placeholde
     emb = sess.run(embeddings, feed_dict=feed_dict)
 
     for i in range(len(id_dataset)):
-        id_dataset[i].embedding = emb[i, :]
+        id_dataset[i-1].embedding = emb[i-1, :]
     return id_dataset
 
 
